@@ -1,0 +1,801 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言
+目前楼主已经拿到阿里实习offer，一共经历了5次面试，其中4轮技术面，1轮HR面试。在这里分享一下自己的面试经验和学习总结。写这篇面经主要是希望能够帮助更多的小伙伴。我本科毕业于中南大学信管专业，真正开始学习Java是在大三下学期，研究生就读北航的移动云计算专业。刚开始也是小白，也是一步步成成起来的。希望能够给与我有相同经历的亲们一个参考。需要提的一点是，你将来是需要靠这个吃饭的，所以请对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里面试offer小结">
+<meta property="og:url" content="http://happyxiaofan.github.io/2016/09/19/alibaba-offer/index.html">
+<meta property="og:site_name" content="rhwayfun的博客">
+<meta property="og:description" content="前言
+目前楼主已经拿到阿里实习offer，一共经历了5次面试，其中4轮技术面，1轮HR面试。在这里分享一下自己的面试经验和学习总结。写这篇面经主要是希望能够帮助更多的小伙伴。我本科毕业于中南大学信管专业，真正开始学习Java是在大三下学期，研究生就读北航的移动云计算专业。刚开始也是小白，也是一步步成成起来的。希望能够给与我有相同经历的亲们一个参考。需要提的一点是，你将来是需要靠这个吃饭的，所以请对">
+<meta property="og:updated_time" content="2016-09-19T12:51:15.967Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="阿里面试offer小结">
+<meta name="twitter:description" content="前言
+目前楼主已经拿到阿里实习offer，一共经历了5次面试，其中4轮技术面，1轮HR面试。在这里分享一下自己的面试经验和学习总结。写这篇面经主要是希望能够帮助更多的小伙伴。我本科毕业于中南大学信管专业，真正开始学习Java是在大三下学期，研究生就读北航的移动云计算专业。刚开始也是小白，也是一步步成成起来的。希望能够给与我有相同经历的亲们一个参考。需要提的一点是，你将来是需要靠这个吃饭的，所以请对">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6266380989375710000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://happyxiaofan.github.io/2016/09/19/alibaba-offer/"/>
+
+  <title> 阿里面试offer小结 | rhwayfun的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">rhwayfun的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">learn more, think more!</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                阿里面试offer小结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T17:39:40+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/alibaba-offer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/alibaba-offer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o">阅读</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>前言</strong></p>
+<p>目前楼主已经拿到阿里实习offer，一共经历了5次面试，其中4轮技术面，1轮HR面试。在这里分享一下自己的面试经验和学习总结。写这篇面经主要是希望能够帮助更多的小伙伴。我本科毕业于中南大学信管专业，真正开始学习Java是在大三下学期，研究生就读北航的移动云计算专业。刚开始也是小白，也是一步步成成起来的。希望能够给与我有相同经历的亲们一个参考。需要提的一点是，你将来是需要靠这个吃饭的，所以请对找工作保持十二分的热情，而且越早准备越好，摆正心态和位置，那么就开始努力吧！！</p>
+<p><strong>阿里一面</strong><br>    一面是在上午9点多接到支付宝的面试电话的，因为很期望能够尽快接到阿里的电话，所以非常兴奋。电话接通之后还是非常紧张的，毕竟是第一次这样的面试。中间面的问题有些记不清了，下面列出了一面问到的问题：</p>
+<ol>
+<li>自我介绍下自己，不超过3分钟（实际上我的自我介绍不到一分钟）</li>
+<li>你感觉比本科阶段自己进步了多少，有哪些进步</li>
+<li>研究生期间最大的进步是什么</li>
+<li>你觉得你适合从事哪个方向的开发</li>
+<li>synchronized与lock的区别，使用场景。看过synchronized的源码没</li>
+<li>JVM自动内存管理，Minor GC与Full GC的触发机制</li>
+<li>了解过JVM调优没，基本思路是什么</li>
+<li>如何设计存储海量数据的存储系统</li>
+<li>缓存的实现原理，设计缓存要注意什么</li>
+<li>淘宝热门商品信息在JVM哪个内存区域</li>
+<li>操作系统的页式存储</li>
+<li>volatile关键字的如何保证内存可见性</li>
+<li>happen-before原则</li>
+<li>Lucene全文搜索的原理</li>
+<li>你觉得自己适合哪方面的开发，为什么</li>
+<li>想去哪里实习，杭州？</li>
+<li>评价一下我的这次面试表现</li>
+<li>应该在我的技术栈中增加什么</li>
+<li>有机会下次面试吗</li>
+</ol>
+<p><strong>一面总结</strong>： 一面大概面了50多分钟，从面试官口中得知他是一个老员工，比我大不了多少，总体上还是聊得蛮投机的。最后的三个问题是我问面试官的，在回答我是否还有机会下次面试的时候说：竞争很激烈，不过机会还是有的。听到这才松了口气，在挂完电话后赶紧区官网查看自己的状态，刚开始出现了结果将在xxx后公布，那叫一个紧张啊，等了几分钟后，简历状态显示在面试中，这才松了口气。</p>
+<p>可以看出一面的问题不是很难，但是要得到面试官比较高的评价（后面听我同学说，我的面试表现是A），还是需要一定的表达能力和对技术比较本质的认识的，如果在回答问题的时候能够做一些适当的扩展，自然会让面试官对你有不一样的评价。我回答问题的遵循一定的步骤：先回答问题本质，在回答具体细节，最后做一些平时编程中的扩展。这样，会让面试官觉得你确实是在这个技术上面下过功夫的。</p>
+<p><strong>阿里二面</strong><br>    等了将近6天（还以为被刷了呢）终于在第二周的周四接到阿里面试电话，那叫一个激动啊。赶紧找了一个安静的地方，准备好后开始正式面试。二面的面试官是一个部门主管，自然还是有点小紧张的。这次面试官上来就直接问，没有一面的面试官那么好说话，下面是面试过程中的问题：</p>
+<ol>
+<li>自我介绍下自己，不超过3分钟（我的自我介绍仍然不超过1分钟，呵呵了）</li>
+<li>你说你熟悉并发编程，那么你说说Java锁有哪些种类，以及区别（果然深度不一样）</li>
+<li>如何保证内存可见性</li>
+<li>Http请求的过程与原理</li>
+<li>TCP连接的特点</li>
+<li>TCP连接如何保证安全可靠的</li>
+<li>为什么TCP连接需要三次握手，两次不可以吗，为什么</li>
+<li>AOP的原理</li>
+<li>动态代理与cglib实现的区别（这个，醉得很厉害）</li>
+<li>那么你说说代理的实现原理呗</li>
+<li>看过Spring源码没，说说Ioc容器的加载过程吧</li>
+<li>了解过字节码的编译过程吗（这个还真不知道）</li>
+<li>可以来杭州实习吗</li>
+<li>评价一下我的面试表现</li>
+<li>有机会下次面试吗</li>
+<li>您觉得我的技术栈应该补充什么，有哪些方面还需要提高</li>
+</ol>
+<p><strong>二面总结</strong>： 二面面试官问的问题都比较直接，答案也是知道就知道，不知道就不知道。这些问题一部分是基础一部分是根据你的专业技能的来提问的。面完后面试官对我的评价是：中规中矩，有机会下次面试。虽说是中规中矩，但听到面试官说有机会下次面试就感觉这次面试应该过了。挂完电话后赶紧登陆查看我的简历状态，刚开始仍然显示在面试中，但是有一点困惑的是：为什么这次没有出现结果待公布的页面呢？又一阵担心，上课也心不在焉，终于在晚上7点多的时候显示了结果待公布的页面，然后心跳又开始开速，过了几分钟看到终于显示在面试中才放松一点。</p>
+<p>虽说这次面试过了，但是我在思考的是为什么面试官对我的表现是中规中矩。后面我知道我的回答虽然答到了点子上，但是扩展程度不够，对一些问题的理解缺乏足够的实践经验。面试官告诉我，有时间可以去研究字节码的编译过程，以及JVM调优方面的知识（特别强调这个很重要）。针对自己的不足，面完后又投入疯狂的看书写代码的生活中。虽然在面试中有一些回答不出来很正常，但是如果能够做到出乎面试官的意料，也是面试官对你很重要的加分项。</p>
+<p><strong>阿里三面（总监面）</strong><br>    三面与二面隔了5天（不知道是不是因为二面面试官对我的评价是中规中矩的缘故，中间一直担心自己被刷了），仍然在下午4点多接到的电话，一看显示来电归属地是阿里巴巴集团，兴奋得不行，找了一个安静的地方开始面试。据说总监面会问项目多一点，所以在等待的这几天中给项目增加了几个比较肉的点，好在能够面试官耍耍（现在想来只能说：too young too simple）。总监刚上来非常不客气，最尴尬的是总监那边老感觉有回声，因为不好意思提就忍了。下面是三面遇到的问题：</p>
+<ol>
+<li>自我介绍，不超过3分钟（这次好像时间更久了，也就2分钟多点）</li>
+<li>说一下你对哪个项目比较熟悉</li>
+<li>为什么做这个项目</li>
+<li>项目采用了什么架构，数据库如何设计的</li>
+<li>数据库由哪些表，为什么有这些表</li>
+<li>主要有哪些核心模块，模块之间如何通信的</li>
+<li>session放在哪里</li>
+<li>如何保存会话状态，有哪些方式、区别如何</li>
+<li>分布式session如何管理，你有哪些方案</li>
+<li>学过数据结构和算法吗（当然），你说说二分搜索的过程</li>
+<li>说一下快排的过程，写一下伪代码</li>
+<li>了解哪设计模式，举例说说在jdk源码哪些用到了你说的设计模式</li>
+<li>你有什么问我吗（仍然上面三个问题）</li>
+</ol>
+<p><strong>三面总结</strong>：本以为三面是交叉面，没想到是阿里的总监面试。由于具体的技术问题在前两轮面试中已经问过了，所以三面后不会有具体的技术问题，总结来看，对自己做过的项目一定要深入，包括使用使用到的技术原理、为什么要使用这些技术。针对项目，面试官关注的无非以下几点：<br>项目中某个比较重要的点是如何实现的（需要深入技术的原理）<br>遇到的最大困难是什么（有哪些），你怎么解决的？<br>如果需要扩展某个功能，如何降低系统的耦合度<br>如果针对某个功能进行优化，你会怎么设计和优化</p>
+<p> 对于写在简历上面的项目，自己对照上面四个问题进行思考，才会在面试中游刃有余。因为任何在简历中作假的行为，面试官只要详细问你就露馅了。在听到面试官说有机会下次面试的时候，心中自然是非常高兴的。挂完电话后区官网查看自己的简历状态，经过几分钟的煎熬后终于仍然显示是面试中才稍稍放松一些。本以为这次总监面试后直接就是HR面了，奈何在晚上阿里打电话说明天部门总监还需要进行一次面试，让我做好准备。我也是醉了，不是已经总监面了吗。虽然存有疑虑，但不管如何还是好好准备。</p>
+<p><strong>阿里四面 （总监面）</strong><br>    果然，在第二天下午四点多接到了部门总监的电话，简单沟通后开始了面试。这次面试感觉是最放松的，没有什么高深的技术问题，感觉就像和朋友聊天的感觉，真的很感谢这位面试官。下面是面试中的问到的问题：</p>
+<ol>
+<li>来个自我介绍呗，不超过3分钟（这次终于由三分钟了，⊙﹏⊙b汗）</li>
+<li>介绍下你最熟悉的项目</li>
+<li>项目使用了什么架构，亮点是什么</li>
+<li>平时主要学习什么课程</li>
+<li>你目前的研究方向是什么</li>
+<li>家是哪的</li>
+<li>喜欢看什么书</li>
+<li>大概什么时候能来实习呢</li>
+<li>你有什么想要问我吗（仍然上面三个问题）</li>
+</ol>
+<p><strong>四面总结</strong>： 虽然这面比较轻松，也没有什么具体的技术问题，但对项目仍然是面试官关注的，后面了解到总监面除了看你的基础，主要看你的潜力（就是有没有培养的价值），这个东西看起来挺虚的，但是从你平时的学习中仍然是可以看得出来的。所以，作为一名开发人员，平时对技术的研究也是很重要的。在听到面试官说让我好好等HR通知的时候可开心了，感觉饭都吃得更香了。</p>
+<p><strong>阿里五面（HR面）</strong><br>    在隔了4天左右，终于接到了HR的电话，那叫一个激动啊。感觉离阿里offer已经不远了，于是振奋精神，聊得还不错。下面是HR问我的问题：</p>
+<ol>
+<li>自我介绍下吧</li>
+<li>做了哪些项目</li>
+<li>看你在问题中说你在杭州看到很多商贩使用付款二维码，你对支付宝怎么看</li>
+<li>你看吧，每天有那么多人使用支付宝，这些数据如果给你存储，你会怎么设计呢（不是说HR不问技术问题吗？不愧是阿里的HR）</li>
+<li>为什么想来支付宝实习呢</li>
+<li>你身边同学如何评价你、老师呢</li>
+<li>如果与同事发生了意见的不一致，你会如何解决呢</li>
+<li>我什么时候能够得到通知呢</li>
+<li>评价下我的面试表现（听到这个问题，HR居然笑了！）</li>
+<li>阿里如何对实习生进行培训</li>
+</ol>
+<p><strong>五面总结</strong>： 虽然之前就听说阿里HR很犀利，不过我感觉一点都不会啊。难道是我的错觉？不得不说的是这个HR的声音真的很好听诶。</p>
+<p><strong>关于HR面试</strong></p>
+<p>其实早就听说把面试的最终的录取结果具有一票否决权，在面完前面的技术面试之后，还是很担心的。所以咨询了师兄以及网上找了阿里HR面试的资料，大概得到以下结论：</p>
+<ol>
+<li>诚信至上，所以在简历中不要存在任何虚假信息，企图通过虚假信息得到面试机会的后果得不偿失</li>
+<li>HR更关注你的表达能力、与同事相处的能力以及对工作的态度</li>
+<li>对自己的是否一个明确的职业规划（前提是首先得对自己有一个清晰的定位）</li>
+<li>关于待遇的问题（由于面的实习岗位，所以这个没有提，但是就我而言，能力才是最重要的，能力上来了待遇自然就水涨船高）</li>
+</ol>
+<p><strong>关于面试的心态</strong></p>
+<p>在自己拿到阿里offer之前，一直都在想一个问题：我到底该如何做才能离阿里更近？一年的成长与思考让我认清了这点，虽然中间也遇到过很多坑，但却真正让我对自己有了一个清晰的定位，也有了比较明确的目标。正因为如此，我每天所学习的都给我莫大的动力，让我不断进步，并最终实现自己的目标。所以迷茫才是最可怕的，只有摆正心态，对找工作保持十二分的热情，勤奋努力，才能离目标更近一步。</p>
+<p>但是有了目标和努力外，不一定就能实现目标，说到底还有一个运气的成分在里面，只能说你找到心仪的工作概率更大而已。遇到一个好的面试官绝对赚了。这四位阿里的面试官我感觉都挺好的，没有因为他们资历深就为难我，所以还是非常感谢这四位技术面试官的。</p>
+<p><strong>一点总结</strong></p>
+<p>由于本科是非科班出身，也仅仅是接触过Java而已，在大三的时候对自己的未来的发展道路很迷茫，不知道何去何从，感觉自己就是一个loser。那会考完研后有幸进入了金蝶实习，也就是那段时间让我认清了自己的短板，自己欠缺的是什么，那段时间也是我确立自己目标的过程。读研后疯狂看书、写代码、写博客、做项目，每天都在对自己进行总结和反思，正是这样一个不断的自我反思与努力的过程中，我得到了真正的成长与进步。也是这段经历让我能够面对阿里技术面试官的提问应答自如，从而顺利拿到阿里的offer。</p>
+<p>最后，想送给自己两句话以鞭策自己：</p>
+<ul>
+<li><strong>越努力，越幸运！</strong></li>
+<li><strong>以现在大多数人的努力程度之低，根本轮不到可以拼天赋。</strong></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="rhwayfun Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag">#面试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/19/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/19/alibaba-offer/"
+     data-title="阿里面试offer小结"
+     data-content=""
+     data-url="http://happyxiaofan.github.io/2016/09/19/alibaba-offer/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/19/alibaba-offer/"
+           data-title="阿里面试offer小结" data-url="http://happyxiaofan.github.io/2016/09/19/alibaba-offer/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="rhwayfun" />
+          <p class="site-author-name" itemprop="name">rhwayfun</p>
+          <p class="site-description motion-element" itemprop="description">learn more, think more!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/happyxiaofan" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/rhwayfun" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/rhwayfun" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/rhwayfun" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rhwayfun</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye">访问量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rhwayfun"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
