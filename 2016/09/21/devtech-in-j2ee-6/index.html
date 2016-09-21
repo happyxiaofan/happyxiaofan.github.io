@@ -1,0 +1,738 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaEE,Proxool," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言Proxool也是目前主流的数据库连接池，Proxool是一种Java数据库连接池技术。也是sourceforge下的一个开源项目,这个项目提供一个健壮、易用的连接池，最为关键的是这个连接池提供监控的功能，方便易用，便于发现连接泄漏的情况。下面是对Proxool连接池的一些技术小结
+使用Proxool连接池方式在官方提供的文档中，有多种使用Proxool的方式，这里只介绍两种：一种是通过配置文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaEE开发技术点6：Proxool数据库连接池">
+<meta property="og:url" content="http://happyxiaofan.github.io/2016/09/21/devtech-in-j2ee-6/index.html">
+<meta property="og:site_name" content="rhwayfun的博客">
+<meta property="og:description" content="前言Proxool也是目前主流的数据库连接池，Proxool是一种Java数据库连接池技术。也是sourceforge下的一个开源项目,这个项目提供一个健壮、易用的连接池，最为关键的是这个连接池提供监控的功能，方便易用，便于发现连接泄漏的情况。下面是对Proxool连接池的一些技术小结
+使用Proxool连接池方式在官方提供的文档中，有多种使用Proxool的方式，这里只介绍两种：一种是通过配置文">
+<meta property="og:image" content="http://img.blog.csdn.net/20151127165240388">
+<meta property="og:image" content="http://img.blog.csdn.net/20151127165133312">
+<meta property="og:updated_time" content="2016-09-21T12:33:47.459Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaEE开发技术点6：Proxool数据库连接池">
+<meta name="twitter:description" content="前言Proxool也是目前主流的数据库连接池，Proxool是一种Java数据库连接池技术。也是sourceforge下的一个开源项目,这个项目提供一个健壮、易用的连接池，最为关键的是这个连接池提供监控的功能，方便易用，便于发现连接泄漏的情况。下面是对Proxool连接池的一些技术小结
+使用Proxool连接池方式在官方提供的文档中，有多种使用Proxool的方式，这里只介绍两种：一种是通过配置文">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20151127165240388">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6266380989375710000,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://happyxiaofan.github.io/2016/09/21/devtech-in-j2ee-6/"/>
+
+  <title> JavaEE开发技术点6：Proxool数据库连接池 | rhwayfun的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">rhwayfun的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">learn more, think more!</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaEE开发技术点6：Proxool数据库连接池
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T23:46:30+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/SSH/" itemprop="url" rel="index">
+                    <span itemprop="name">SSH</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/21/devtech-in-j2ee-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/devtech-in-j2ee-6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o">阅读</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>前言</strong><br>Proxool也是目前主流的数据库连接池，Proxool是一种Java数据库连接池技术。也是sourceforge下的一个开源项目,这个项目提供一个健壮、易用的连接池，最为关键的是这个连接池提供监控的功能，方便易用，便于发现连接泄漏的情况。下面是对Proxool连接池的一些技术小结</p>
+<p><strong>使用Proxool连接池方式</strong><br>在官方提供的文档中，有多种使用Proxool的方式，这里只介绍两种：一种是通过配置文件的方式使用Proxool；一种是通过直接设置属性的方式使用。其中使用了Proxool连接池中的数据源。与jdbc pool一样也是通过数据源的方式进行配置<br><a id="more"></a></p>
+<p><strong>1、直接设置属性的方式</strong></p>
+<p>编写一个工具类，该类可以返回Proxool数据库连接对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">package cp;</div><div class="line"></div><div class="line">import java.io.InputStream;</div><div class="line">import java.io.InputStreamReader;</div><div class="line">import java.io.Reader;</div><div class="line">import java.io.UnsupportedEncodingException;</div><div class="line">import java.sql.Connection;</div><div class="line">import java.sql.DriverManager;</div><div class="line">import java.sql.SQLException;</div><div class="line"></div><div class="line">import org.logicalcobwebs.proxool.ProxoolDataSource;</div><div class="line">import org.logicalcobwebs.proxool.ProxoolException;</div><div class="line">import org.logicalcobwebs.proxool.configuration.JAXPConfigurator;</div><div class="line"></div><div class="line">public class Proxool &#123;</div><div class="line"></div><div class="line">    private ProxoolDataSource dataSource = null;</div><div class="line">    public Proxool() &#123;</div><div class="line">        dataSource = new ProxoolDataSource();</div><div class="line">        init2();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void init2()&#123;</div><div class="line">         dataSource = new ProxoolDataSource(); </div><div class="line">         dataSource.setDriver(&quot;com.mysql.jdbc.Driver&quot;); </div><div class="line">         dataSource.setDriverUrl(&quot;jdbc:mysql://localhost/test&quot;);    </div><div class="line">         dataSource.setUser(&quot;root&quot;); </div><div class="line">         dataSource.setPassword(&quot;1234&quot;); </div><div class="line">         dataSource.setAlias(&quot;mysql&quot;); </div><div class="line">         dataSource.setMaximumConnectionCount(5); </div><div class="line">         dataSource.setMinimumConnectionCount(0); </div><div class="line">         dataSource.setMaximumActiveTime(5); </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Connection getProxoolConnection2() &#123;</div><div class="line">        Connection connection = null;</div><div class="line">        try &#123;</div><div class="line">            connection = dataSource.getConnection();</div><div class="line">        &#125; catch (SQLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return connection;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后编写测试代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class TestCp &#123;</div><div class="line">    public static void main(String[] args) throws SQLException &#123;</div><div class="line">        Proxool p = new Proxool();</div><div class="line">        for (int i = 0; i &lt; 5; i++) &#123;</div><div class="line">            Connection con = p.getProxoolConnection2();</div><div class="line">            System.out.println(con);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试结果如下：<br><img src="http://img.blog.csdn.net/20151127165240388" alt=""><br>可以发现，返回的是不同的五个连接对象。使用这种方式的好处简单直接，缺点是不易维护，属性发生变化需要修改代码。</p>
+<p><strong>2、使用配置文件</strong><br>下面，我们看看如何以配置文件的方式使用Proxool连接池。首先，自然，需要创建一个proxool.xml配置文件，暂且先放到src根目录下。文件内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;something-else-entirely&gt;</div><div class="line">    &lt;proxool&gt;</div><div class="line">        &lt;alias&gt;mysql&lt;/alias&gt;</div><div class="line">        &lt;!--数据源的别名 --&gt;</div><div class="line">        &lt;driver-url&gt;jdbc:mysql://127.0.0.1/test&lt;/driver-url&gt;</div><div class="line">        &lt;!--url--&gt;</div><div class="line">        &lt;driver-class&gt;com.mysql.jdbc.Driver&lt;/driver-class&gt;</div><div class="line">        &lt;!--驱动类 --&gt;</div><div class="line">        &lt;driver-properties&gt;</div><div class="line">            &lt;property name=&quot;user&quot; value=&quot;root&quot; /&gt;</div><div class="line">            &lt;property name=&quot;password&quot; value=&quot;1234&quot; /&gt;</div><div class="line">        &lt;/driver-properties&gt;</div><div class="line">        &lt;!-- 任一时刻，可以（同时）建立的最大连接数 --&gt;</div><div class="line">        &lt;simultaneous-build-throttle&gt;10&lt;/simultaneous-build-throttle&gt;</div><div class="line">        &lt;!--最大连接数(默认5个)--&gt;</div><div class="line">        &lt;maximum-connection-count&gt;100&lt;/maximum-connection-count&gt;</div><div class="line">        &lt;!--最小连接数(默认2个) --&gt;</div><div class="line">        &lt;minimum-connection-count&gt;10&lt;/minimum-connection-count&gt;</div><div class="line">        &lt;!--proxool自动侦察各个连接状态的时间间隔(毫秒)--&gt;</div><div class="line">        &lt;house-keeping-sleep-time&gt;120000&lt;/house-keeping-sleep-time&gt;</div><div class="line">        &lt;!--最少保持的空闲连接数 --&gt;</div><div class="line">        &lt;prototype-count&gt;10&lt;/prototype-count&gt;</div><div class="line">        &lt;!--在使用之前测试 --&gt;</div><div class="line">        &lt;test-before-use&gt;true&lt;/test-before-use&gt;</div><div class="line">        &lt;!--用于保持连接的测试语句 --&gt;</div><div class="line">        &lt;house-keeping-test-sql&gt;select 1&lt;/house-keeping-test-sql&gt;</div><div class="line">    &lt;/proxool&gt;</div><div class="line">&lt;/something-else-entirely&gt;</div></pre></td></tr></table></figure></p>
+<p>上面的这些属性也可以通过第一种方式进行设置，之后，需要编写获取连接的方法，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class Proxool &#123;</div><div class="line">    public Proxool() &#123;</div><div class="line">        dataSource = new ProxoolDataSource();</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void init() &#123;</div><div class="line">        InputStream in = Proxool.class.getResourceAsStream(&quot;/proxool.xml&quot;);</div><div class="line">        Reader reader = null;</div><div class="line">        try &#123;</div><div class="line">            reader = new InputStreamReader(in, &quot;utf-8&quot;);</div><div class="line">        &#125; catch (UnsupportedEncodingException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        try &#123;</div><div class="line">            JAXPConfigurator.configure(reader, false);</div><div class="line">        &#125; catch (ProxoolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public Connection getProxoolConnection() &#123;</div><div class="line">        Connection connection = null;</div><div class="line">        try &#123;</div><div class="line">            connection = DriverManager.getConnection(&quot;proxool.mysql&quot;);</div><div class="line">        &#125; catch (SQLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return connection;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意两者的区别，使用这种方式需要读取proxool.xml这个配置文件（以流的方式），读取之后，调用JAXPConfigurator的configure方法就可以完成对xml文件的解析了。之后在客户端直接调用getConnection方法就能从数据库连接池中获取连接了。测试代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class TestCp &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws SQLException &#123;</div><div class="line">        Proxool p = new Proxool();</div><div class="line">        for (int i = 0; i &lt; 5; i++) &#123;</div><div class="line">            Connection con = p.getProxoolConnection();</div><div class="line">            System.out.println(con);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试如下：<br><img src="http://img.blog.csdn.net/20151127165133312" alt=""></p>
+<p><strong>Proxool数据库连接池小结</strong><br>使用Proxool数据库连接池可以很好管理数据库连接，提高服务器的响应性能。总结jdbc pool数据库连接池与Proxool数据库连接池，可以发现两者存在一定的共性：都是通过数据源的方式获取连接，这点与普通jdbc操作有很大不同，Drivermanager类使用后不能及时释放资源，而且是不可重用的。而数据库连接池则管理了数据库连接池任何一个连接对象，包括其创建、释放和销毁。</p>
+<p>Proxool上述的两种方式都比较普遍，但是使用配置文件灵活性比较大，便于对代码进行维护，推荐这种使用方式。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="rhwayfun Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaEE/" rel="tag">#JavaEE</a>
+          
+            <a href="/tags/Proxool/" rel="tag">#Proxool</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/alibaba-offer/" rel="next" title="阿里面试offer小结">
+                <i class="fa fa-chevron-left"></i> 阿里面试offer小结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/21/devtech-in-j2ee-6/"
+     data-title="JavaEE开发技术点6：Proxool数据库连接池"
+     data-content=""
+     data-url="http://happyxiaofan.github.io/2016/09/21/devtech-in-j2ee-6/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/21/devtech-in-j2ee-6/"
+           data-title="JavaEE开发技术点6：Proxool数据库连接池" data-url="http://happyxiaofan.github.io/2016/09/21/devtech-in-j2ee-6/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="rhwayfun" />
+          <p class="site-author-name" itemprop="name">rhwayfun</p>
+          <p class="site-description motion-element" itemprop="description">learn more, think more!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/happyxiaofan" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/rhwayfun" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/rhwayfun" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/rhwayfun" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rhwayfun</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye">访问量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rhwayfun"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
